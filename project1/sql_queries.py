@@ -20,13 +20,17 @@ songplay_table_create = ("""
     CREATE TABLE IF NOT EXISTS songplays (
         songplay_id SERIAL PRIMARY KEY,
         start_time TIMESTAMP,
-        user_id INT,
-        level VARCHAR,
-        song_id VARCHAR,
-        artist_id VARCHAR,
+        user_id INT NOT NULL,
+        level VARCHAR(4),
+        song_id VARCHAR(18),
+        artist_id VARCHAR(18),
         session_id INT,
         location VARCHAR,
-        user_agent VARCHAR
+        user_agent VARCHAR,
+        FOREIGN KEY(start_time) REFERENCES time(start_time),
+        FOREIGN KEY(user_id) REFERENCES users(user_id),
+        FOREIGN KEY(song_id) REFERENCES songs(song_id),
+        FOREIGN KEY(artist_id) REFERENCES artists(artist_id)
     );
 """)
 
@@ -36,10 +40,10 @@ songplay_table_create = ("""
 user_table_create = ("""
     CREATE TABLE IF NOT EXISTS users (
         user_id INT PRIMARY KEY NOT NULL,
-        first_name VARCHAR,
+        first_name VARCHAR NOT NULL,
         last_name VARCHAR,
-        gender CHAR,
-        level VARCHAR
+        gender CHAR(1),
+        level VARCHAR(4) NOT NULL
     );
 """)
 
@@ -48,10 +52,10 @@ user_table_create = ("""
 song_table_create = ("""
     CREATE TABLE IF NOT EXISTS songs (
         song_id VARCHAR(18) PRIMARY KEY NOT NULL,
-        title VARCHAR,
-        artist_id VARCHAR,
-        year INT,
-        duration FLOAT
+        title VARCHAR NOT NULL,
+        artist_id VARCHAR(18),
+        year INT NOT NULL,
+        duration FLOAT NOT NULL
     );
 """)
 
@@ -72,12 +76,12 @@ artist_table_create = ("""
 time_table_create = ("""
     CREATE TABLE IF NOT EXISTS time (
         start_time TIMESTAMP PRIMARY KEY NOT NULL,
-        hour INT,
-        day INT,
-        week INT,
-        month INT,
-        year INT, 
-        weekday INT
+        hour INT NOT NULL,
+        day INT NOT NULL,
+        week INT NOT NULL,
+        month INT NOT NULL,
+        year INT NOT NULL,
+        weekday INT NOT NULL
     );
 """)
 
