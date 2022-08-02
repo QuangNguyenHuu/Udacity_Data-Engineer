@@ -95,21 +95,19 @@ def import_event_data(session, file_path):
             # print('Song Title 9: {}'.format(line[9]))
             # print('User ID 10: {}'.format(line[10]))
 
-            # Assign the INSERT statements into the `query` variable
-
-            # user_id, first_name, last_name, gender, song_title, location
+            # song_title,user_id, first_name, last_name, gender, location
             statement = session.prepare(users_table_insert)
-            data = [int(line[10]), line[1], line[2], line[3], line[9], line[7]]
+            data = [line[9], int(line[10]), line[1], line[2], line[3], line[7]]
             session.execute(statement, data)
 
-            # song_title, artist, length, session_id, item_in_session
+            # session_id, item_in_session, song_title, artist, length
             statement = session.prepare(songs_table_insert)
-            data = [line[9], line[0], float(line[5]), int(line[8]), int(line[4])]
+            data = [int(line[8]), int(line[4]), line[9], line[0], float(line[5])]
             session.execute(statement, data)
 
-            # artist, item_in_session, user_id, session_id
+            # user_id, session_id, artist, item_in_session
             statement = session.prepare(artists_table_insert)
-            data = [line[0], int(line[4]), int(line[10]), int(line[8])]
+            data = [int(line[10]), int(line[8]), line[0], int(line[4])]
             session.execute(statement, data)
             print('Processing row {}/{} completed'.format(i, total_row_number))
 

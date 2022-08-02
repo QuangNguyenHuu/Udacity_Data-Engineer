@@ -10,8 +10,16 @@ In this project, you'll apply what you've learned on data modeling with Apache C
 To model your data by creating tables in Apache Cassandra to run queries. You are provided with part of the ETL pipeline that transfers data from a set of CSV files within a directory to create a streamlined CSV file to model and insert data into Apache Cassandra tables.
 
 ## Schema Apache Cassandra tables
+Table ARTISTS:
+which refer to be logged kind of session upon user's favorite artist and his data of playing (session of play, most favorite songs of the artist, quantification of play, period of times...), `user_id`, `session_id` refer to be a partition key, and `item_in_session` refer to be cluster key refer data of the session.
 ![artists](images/artists.png)
+
+Table SONGS:
+which logs song data and play-song & play-in-session therefore to take `session_id` & `item_in_session` to be a pairs of partition key to inquiry data of table songs, on the other hand it uses for reference related other table's data.
 ![songs](images/songs.png)
+
+Table USERS:
+which logs historical logging of user's song-play session (song name, user's location... ). Properly there are lots of duplicate name of song and `song_title` would be filtering song info hence `user_id` used as a clustering column 
 ![users](images/users.png)
 
 ## Event Data Collection
@@ -25,7 +33,7 @@ To model your data by creating tables in Apache Cassandra to run queries. You ar
 ```
 pip install notebook
 ```
-4. Install cassandra
+5.Install cassandra
 ```
 pip install cassandra
 ```

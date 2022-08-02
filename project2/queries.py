@@ -14,31 +14,30 @@ delete_users_table = "DROP TABLE IF EXISTS users"
 # CREATE TABLES
 create_songs_table = ("""
 CREATE TABLE IF NOT EXISTS songs (
+    session_id BIGINT, 
+    item_in_session BIGINT,
     song_title VARCHAR,
     artist VARCHAR,
-    length FLOAT,
-    session_id BIGINT, 
-    item_in_session BIGINT, 
+    length FLOAT, 
     PRIMARY KEY (session_id, item_in_session));
 """)
 
 create_artists_table = ("""
 CREATE TABLE IF NOT EXISTS artists (
-    artist VARCHAR,
-    item_in_session BIGINT,
     user_id BIGINT,
     session_id BIGINT,
+    item_in_session BIGINT,
+    artist VARCHAR,
     PRIMARY KEY ((user_id, session_id), item_in_session));
 """)
 
-#  user_id, first_name, last_name, gender, song_title, location
 create_users_table = ("""
 CREATE TABLE IF NOT EXISTS users (
+    song_title VARCHAR,
     user_id BIGINT, 
     first_name VARCHAR, 
     last_name VARCHAR,
     gender VARCHAR,
-    song_title VARCHAR,
     location VARCHAR,
     PRIMARY KEY ((song_title), user_id));
 """)
@@ -63,21 +62,21 @@ select_user_query = ("""
     WHERE song_title = 'All Hands Against His Own';
 """)
 
-# song_title, artist, length, session_id, item_in_session
+# session_id, item_in_session, song_title, artist, length
 songs_table_insert = ("""
-    INSERT INTO songs (song_title, artist, length, session_id, item_in_session)
+    INSERT INTO songs (session_id, item_in_session, song_title, artist, length)
     VALUES (?,?,?,?,?);
 """)
 
-# artist, item_in_session, user_id, session_id
+# user_id, session_id, artist, item_in_session
 artists_table_insert = ("""
-    INSERT INTO artists (artist, item_in_session, user_id, session_id)
+    INSERT INTO artists (user_id, session_id, artist, item_in_session)
     VALUES (?,?,?,?);
 """)
 
 # user_id, first_name, last_name, gender, song_title, location
 users_table_insert = ("""
-    INSERT INTO users (user_id, first_name, last_name, gender, song_title, location)
+    INSERT INTO users (song_title, user_id, first_name, last_name, gender, location)
     VALUES (?,?,?,?,?,?);
 """)
 
