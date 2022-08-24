@@ -1,0 +1,32 @@
+CLUSTER:
+  HOST: redshift-cluster-useast.cw5jqkebdvqv.us-east-1.redshift.amazonaws.com
+  DB_NAME: dev
+  DB_USER: student
+  DB_PASSWORD: <secret pwd>
+  DB_PORT: 5439
+  TYPE: multi-node
+  NUMBER_OF_NODE: 2
+  NODE_TYPE: dc2.large
+  CLUSTER_IDENTIFIER: redshift-cluster-useast
+  TIMEOUT: 10
+  DEFAULT_WAIT: 3
+
+IAM_ROLE:
+  ARN: arn:aws:iam::<Im yours>:role/role_name_test_for_AmazonS3ReadOnlyAccess3
+  NAME: role_name_test_for_AmazonS3ReadOnlyAccess3
+
+S3:
+  # UDACITY
+  #   LOG_DATA: s3://udacity-dend/log_data
+  #   LOG_JSON_PATH: s3://udacity-dend/log_json_path.json
+  #   SONG_DATA: s3://udacity-dend/song_data/
+  #   BUCKET_NAME: udacity-dend
+  LOG_DATA: s3://<your identity bucket>/log_data
+  LOG_JSON_PATH: s3://<your identity bucket>/log_json_path.json
+  SONG_DATA: s3://<your identity bucket>/song_data/
+  BUCKET_NAME: <your identity bucket>
+
+AWS:
+  ACCESS_KEY_ID: <yours>
+  SECRET_ACCESS_KEY: <yours>
+  REGION: <yours>
