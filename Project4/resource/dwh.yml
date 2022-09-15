@@ -1,0 +1,15 @@
+S3:
+    BUCKET_NAME: <YOUR_BUCKET_NAME>
+    SONG_DATA: s3://<YOUR_BUCKET_NAME>/song_data/*/*/*/*.json
+    LOG_DATA: s3://<YOUR_BUCKET_NAME>/log_data/*/*/*.json
+    OUTPUT_DATA: s3://<YOUR_BUCKET_NAME>/<your-no-where>/
+
+LOCAL:
+    SONG_DATA: resource/data/song_data/*/*/*/*.json
+    LOG_DATA: resource/data/log_data/*/*/*.json
+    OUTPUT_DATA: resource/output-data/
+
+AWS:
+    ACCESS_KEY_ID: <your access key ID>
+    SECRET_ACCESS_KEY: <your secret access key>
+    REGION: <your AWS region>
