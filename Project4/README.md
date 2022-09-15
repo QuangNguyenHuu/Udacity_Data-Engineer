@@ -25,13 +25,20 @@ Recommend: `s3a` (refer https://github.com/jupyter/docker-stacks/issues/127)
   ![songplays_table.png](resource/songplays_table.png)
 
 **Dimension Tables**:
-- `users` - users in the app
+- `users`
+
   ![users_table.png](resource/users_table.png)
+
 - `songs` - songs in music database
+
   ![songs_table.png](resource/songs_table.png)
+
 - `artists` - artists in music database
+
   ![artist_table.png](resource/artist_table.png)
+
 - `time` - timestamps of records in songplays broken down into specific units
+
   ![time_table.png](resource/time_table.png)
 
 
