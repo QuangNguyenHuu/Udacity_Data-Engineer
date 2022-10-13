@@ -48,3 +48,33 @@ class SqlQueries:
     count_query_template = 'SELECT COUNT(*) FROM {0};'
     select_query_template = 'SELECT * FROM {0};'
     sql_commit_query = 'COMMIT;'
+
+    songplays_data_quality_check_null = ("""
+        SELECT COUNT(*)
+        FROM songplays
+        WHERE songplay_id IS NULL OR start_time IS NULL OR userid IS NULL;
+    """)
+
+    users_data_quality_check_null = ("""
+        SELECT COUNT(*)
+        FROM users
+        WHERE userid IS NULL;
+    """)
+
+    songs_data_quality_check_null = ("""
+        SELECT COUNT(*)
+        FROM songs
+        WHERE song_id IS NULL;
+    """)
+
+    artists_data_quality_check_null = ("""
+        SELECT COUNT(*)
+        FROM artists
+        WHERE artist_id IS NULL;
+    """)
+
+    time_data_quality_check_null = ("""
+        SELECT COUNT(*)
+        FROM time
+        WHERE start_time IS NULL;
+    """)
