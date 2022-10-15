@@ -57,7 +57,7 @@ WINDOWS (ignore those step if you are using Linux, MACOS, Docker):
 - Install Python & pip
 - enable sudo apt install python-is-python3
 - set AIRFLOW_HOME in ~/.bashrc
-  E.g `export AIRFLOW_HOME=/d/<your ABS path>/airflow-workspace`
+  E.g `export AIRFLOW_HOME=/<your ABS path>/airflow-workspace`
 
 ### Docker
 Refer the instruction at https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html
@@ -87,8 +87,8 @@ airflow users create \
 
 ### Screenshots airflow in AWS workspace
 
-![img_1.png](resource/tree_view.png)
-![img_2.png](resource/graph_view.png)
+![tree_view.png](resource/tree_view.png)
+![praph_view.png](resource/graph_view.png)
 
 ## Setup AWS
 Provide relevant configuration info of AWS (S3, AIM, AWS Redshift Cluster) following session `Introduction to Cloud Computing and AWS` in Udacity

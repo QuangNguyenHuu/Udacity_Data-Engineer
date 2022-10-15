@@ -44,6 +44,19 @@ bucket_name = 'udacity-dend'
 bucket_data = 'log_data/2018/11/'
 json_extension = 'json'
 
+# Here is a sample data quality check
+# data check with expected result is None and not None as an example for testing purpose only
+dq_checks_test = [
+    {'table': 'songplays', 'query': SqlQueries.songplays_data_quality_check_null, 'expected_result': 0},
+    {'table': 'users', 'query': SqlQueries.users_data_quality_check_null, 'expected_result': 2},
+    {'table': 'songs', 'query': SqlQueries.songplays_data_quality_check_null, 'expected_result': 0},
+    {'table': 'artists', 'query': SqlQueries.artists_data_quality_check_null, 'expected_result': 5},
+    {'table': 'time', 'query': SqlQueries.time_data_quality_check_null, 'expected_result': None},
+    {'table': 'songplays', 'query': SqlQueries.songplays_check_count_query, 'expected_result': 21},
+    {'table': 'users', 'query': SqlQueries.users_check_count_query, 'expected_result': None},
+    {'table': 'time', 'query': SqlQueries.time_check_count_query, 'expected_result': 5}
+]
+
 stage_events_to_redshift = StageToRedshiftOperator(task_id='STAGE_EVENTS', dag=dag,
                                                    aws_credential=aws_credential,
                                                    bucket_name=bucket_name,
@@ -90,6 +103,7 @@ load_time_dimension_table = LoadDimensionOperator(task_id='LOAD_TIME_TABLE', dag
 run_quality_checks = DataQualityOperator(task_id='DATA_QUALITY_CHECKS', dag=dag,
                                          redshift_connection_id=redshift_conn,
                                          tables=['songplays', 'users', 'songs', 'artists', 'time'],
+                                         quality_checks=dq_checks_test,
                                          start_date=datetime(2022, 10, 10))
 
 end_operator = DummyOperator(task_id='STOP_EXECUTION',  dag=dag)

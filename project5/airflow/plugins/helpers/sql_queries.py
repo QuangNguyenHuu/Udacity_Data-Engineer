@@ -49,6 +49,12 @@ class SqlQueries:
     select_query_template = 'SELECT * FROM {0};'
     sql_commit_query = 'COMMIT;'
 
+    songplays_check_count_query = 'SELECT COUNT(*) FROM songplays;'
+    users_check_count_query = 'SELECT COUNT(*) FROM users'
+    songs_check_count_query = 'SELECT COUNT(*) FROM users'
+    artists_check_count_query = 'SELECT COUNT(*) FROM users'
+    time_check_count_query = 'SELECT COUNT(*) FROM users'
+
     songplays_data_quality_check_null = ("""
         SELECT COUNT(*)
         FROM songplays
